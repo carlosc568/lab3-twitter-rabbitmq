@@ -1,9 +1,13 @@
 var subscription = null;
 var newQuery = 0;
 
+
+
 function registerTemplate() {
 	template = $("#template").html();
 	Mustache.parse(template);
+	trends = $("#trends").html();
+	Mustache.parse(trends);
 }
 
 function setConnected(connected) {
@@ -27,8 +31,21 @@ function registerSendQueryAndConnect() {
 				var query = $("#q").val();
 				stompClient.send("/app/search", {}, query);
 				newQuery = 1;
+				stompClient.subscribe("/queue/trends", function(data) {
+					jsondata=JSON.parse(data.body);
+					var l = [];
+					jsondata.forEach(function(element) {
+					    for(var k in element){
+					    	l.push({'key':k,'val':element[k]});
+					    	
+					    }
+					});
+					$("#trendsBlock").html(Mustache.render(trends, l));
+				});
+				console.log('Registrered to queue trends');	
 				subscription = stompClient.subscribe("/queue/search/" + query, function(data) {
 					var resultsBlock = $("#resultsBlock");
+					console.log("Llega tweet")
 					if (newQuery) {
                         resultsBlock.empty();
 						newQuery = 0;

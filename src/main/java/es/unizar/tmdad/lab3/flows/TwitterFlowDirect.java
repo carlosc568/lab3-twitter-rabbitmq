@@ -1,5 +1,4 @@
 package es.unizar.tmdad.lab3.flows;
-
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
@@ -29,7 +28,7 @@ public class TwitterFlowDirect extends TwitterFlowCommon {
 	@Autowired
 	RabbitTemplate rabbitTemplate;
 
-	// Configuración obligatoria RabbitMQ
+	// Configuracion obligatoria RabbitMQ
 
 	@Bean
 	Queue aTwitterDirectQueue() {

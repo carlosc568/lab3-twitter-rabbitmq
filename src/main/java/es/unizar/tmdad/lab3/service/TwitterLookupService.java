@@ -13,10 +13,12 @@ public class TwitterLookupService {
 			.maximumWeightedCapacity(10).build();
 
 	public void search(String query) {
+		System.out.println("tls.search");
 		connections.putIfAbsent(query, query);
 	}
 
 	public Set<String> getQueries() {
+		System.out.println("tls.getQueries");
 		return connections.keySet();
 	}
 

@@ -28,6 +28,19 @@
             </div>
         </div>
     </script>
+    
+    <script id="trends" type="x-tmpl-mustache">
+   <div class="card p-3">
+            <div class="card-body">
+                <h5 class="card-title">
+    				Trends:
+					<ol>
+    				{{#.}}<li>{{key}}: {{val}}</li> {{/.}}
+					</ol>
+   				</h5>
+			</div>
+   </div>
+	</script>
 
 
 
@@ -45,8 +58,10 @@
         </form>
     </nav>
     <div class="container-fluid">
+	    <div id="trendsBlock"></div>
         <div class="card-columns mt-3" id="resultsBlock"></div>
     </div>
+    
     <script src="http://code.jquery.com/jquery-3.0.0.min.js"
              th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
      <script

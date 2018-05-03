@@ -21,6 +21,7 @@ abstract public class TwitterFlowCommon {
 
 	@Bean
 	public IntegrationFlow sendTweet() {
+		System.out.println("IntegrationFlow sendTweet()");
 		return IntegrationFlows
 				.from(requestChannelRabbitMQ())
 				.filter("payload instanceof T(org.springframework.social.twitter.api.Tweet)")

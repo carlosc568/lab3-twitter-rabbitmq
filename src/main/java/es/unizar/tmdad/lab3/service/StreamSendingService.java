@@ -44,6 +44,7 @@ public class StreamSendingService {
 	}
 
 	public void sendTweet(TargetedTweet targeted) {
+		System.out.println("LLega tweet********************************************************************************");
 		Map<String, Object> map = new HashMap<>();
 		map.put(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON);
 		ops.convertAndSend("/queue/search/" + targeted.getFirstTarget(),
@@ -51,6 +52,8 @@ public class StreamSendingService {
 	}
 
 	public void sendTrends(List<Map.Entry<String, Integer>> targeted) {
+		System.out.println("LLega trend*******************************************++");
+
 		Map<String, Object> map = new HashMap<>();
 		map.put(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON);
 		ops.convertAndSend("/queue/trends",
